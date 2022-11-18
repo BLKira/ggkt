@@ -1,0 +1,56 @@
+# 服务端口
+server:
+  port: 8301
+  # 服务名
+spring:
+  application:
+    name: service-vod
+
+  # 环境设置：dev、test、prod
+  profiles:
+    active: dev
+
+  # mysql数据库连接
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/glkt_vod?characterEncoding=utf-8&useSSL=false&serverTimezone=UTC
+    username: root
+    password: 123456
+
+  #返回json的全局时间格式
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+
+  servlet:
+    multipart:
+      max-file-size: 1024MB
+      max-request-size: 1024MB
+
+#nacos服务地址
+#  cloud:
+#    nacos:
+#      discovery:
+#        server-addr:  localhost:8848
+
+
+#不同的服务器，地址不同
+tencent:
+  cos:
+    file:
+      region: ap-beijing
+      secretid: AKIDB5ye8rOegU4QbZKsCJCsWwEMI1Xs1xf9
+      secretkey: IUaWEoDQPCnBKNFvOdkjdR5Yp14ZzLXY
+  #bucket可以在控制台创建，也可以使用java代码创建
+      bucketname: ggkt-1308510430
+
+  video:
+    appid:  1310644373
+
+#mybatis日志
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+  mapper-locations: classpath:com/atguigu/ggkt/vod/mapper/xml/*.xml
+

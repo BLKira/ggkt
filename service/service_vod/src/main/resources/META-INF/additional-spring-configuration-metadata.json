@@ -1,0 +1,13 @@
+{
+  "properties": [
+    {
+      "name": "tencent.cos.file.region",
+      "type": "java.lang.String",
+      "description": "Description for tencent.cos.file.region."
+    },
+    {
+      "name": "tencent.cos.file.region",
+      "type": "java.lang.String",
+      "description": "Description for tencent.cos.file.region."
+    }
+  ] }
