@@ -28,10 +28,10 @@ spring:
       max-request-size: 1024MB
 
 #nacos服务地址
-#  cloud:
-#    nacos:
-#      discovery:
-#        server-addr:  localhost:8848
+  cloud:
+    nacos:
+      discovery:
+        server-addr:  localhost:8848
 
 
 #不同的服务器，地址不同
@@ -45,7 +45,7 @@ tencent:
       bucketname: ggkt-1308510430
 
   video:
-    appid:  1310644373
+    appid: 1310644373
 
 #mybatis日志
 mybatis-plus:

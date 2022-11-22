@@ -1,0 +1,74 @@
+# 服务端口
+server:
+  port: 8333
+
+  # 服务名
+Spring:
+  application:
+    name: service-gateway
+
+  # nacos服务地址
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+
+    #使用服务发现路由
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+
+      #service-vod模块配置
+      #设置路由id
+      routes[0]:
+        id: service-vod
+        #设置路由的uri  lb  load balance
+        uri: lb://service-vod
+        #设置路由断言,代理servicerId为auth-service的/auth/路径  /admin/vod/chapter/list
+        predicates: Path=/*/vod/**
+
+      #service-order模块配置
+      #设置路由id
+      routes[1]:
+        id: service-order
+        #设置路由的uri  lb  load balance
+        uri: lb://service-order
+        #设置路由断言,代理servicerId为auth-service的/auth/路径  /admin/order/orderInfo
+        predicates: Path=/*/order/**
+
+      #service-user模块配置
+      #设置路由id
+      routes[2]:
+        id: service-user
+        #设置路由的uri
+        uri: lb://service-user
+        #设置路由断言,代理servicerId为auth-service的/auth/路径
+        predicates: Path=/*/user/**
+
+      #service-activity模块配置
+      #设置路由id
+      routes[3]:
+        id: service-activity
+        #设置路由的uri
+        uri: lb://service-activity
+        #设置路由断言,代理servicerId为auth-service的/auth/路径
+        predicates: Path=/*/activity/**
+
+      #service-wechat模块配置
+      #设置路由id
+      routes[4]:
+        id: service-wechat
+        #设置路由的uri
+        uri: lb://service-wechat
+        #设置路由断言,代理servicerId为auth-service的/auth/路径
+        predicates: Path=/*/wechat/**
+
+      #service-wechat模块配置
+      #设置路由id
+      routes[5]:
+        id: service-live
+        #设置路由的uri
+        uri: lb://service-live
+        #设置路由断言,代理servicerId为auth-service的/auth/路径
+        predicates: Path=/*/live/**

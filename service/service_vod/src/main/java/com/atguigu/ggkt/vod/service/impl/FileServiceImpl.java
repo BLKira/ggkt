@@ -1,7 +1,7 @@
 package com.atguigu.ggkt.vod.service.impl;
 
 import com.atguigu.ggkt.vod.service.FileService;
-import com.atguigu.ggkt.vod.utils.ConstantPropertiesUtil;
+import com.atguigu.ggkt.utils.ConstantPropertiesUtil;
 import com.qcloud.cos.COSClient;
 import com.qcloud.cos.ClientConfig;
 import com.qcloud.cos.auth.BasicCOSCredentials;

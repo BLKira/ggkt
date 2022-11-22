@@ -3,10 +3,9 @@ package com.atguigu.ggkt.vod.controller;
 import com.atguigu.ggkt.exception.GgktException;
 import com.atguigu.ggkt.result.Result;
 import com.atguigu.ggkt.vod.service.VodService;
-import com.atguigu.ggkt.vod.utils.ConstantPropertiesUtil;
-import com.atguigu.ggkt.vod.utils.Signature;
+import com.atguigu.ggkt.utils.ConstantPropertiesUtil;
+import com.atguigu.ggkt.utils.Signature;
 import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,7 +14,6 @@ import java.util.Random;
 @Api(tags = "腾讯云点播")
 @RestController
 @RequestMapping("/admin/vod")
-@CrossOrigin
 public class VodController {
 
     @Autowired

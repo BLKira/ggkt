@@ -4,7 +4,7 @@ import com.atguigu.ggkt.exception.GgktException;
 import com.atguigu.ggkt.model.vod.Video;
 import com.atguigu.ggkt.vod.service.VideoService;
 import com.atguigu.ggkt.vod.service.VodService;
-import com.atguigu.ggkt.vod.utils.ConstantPropertiesUtil;
+import com.atguigu.ggkt.utils.ConstantPropertiesUtil;
 import com.qcloud.vod.VodUploadClient;
 import com.qcloud.vod.model.VodUploadRequest;
 import com.qcloud.vod.model.VodUploadResponse;

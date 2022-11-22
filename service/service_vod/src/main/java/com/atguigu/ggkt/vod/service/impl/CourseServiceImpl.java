@@ -4,9 +4,7 @@ import com.atguigu.ggkt.model.vod.Course;
 import com.atguigu.ggkt.model.vod.CourseDescription;
 import com.atguigu.ggkt.model.vod.Subject;
 import com.atguigu.ggkt.model.vod.Teacher;
-import com.atguigu.ggkt.vo.vod.CourseFormVo;
-import com.atguigu.ggkt.vo.vod.CoursePublishVo;
-import com.atguigu.ggkt.vo.vod.CourseQueryVo;
+import com.atguigu.ggkt.vo.vod.*;
 import com.atguigu.ggkt.vod.mapper.CourseMapper;
 import com.atguigu.ggkt.vod.service.*;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
@@ -109,6 +107,7 @@ public class CourseServiceImpl extends ServiceImpl<CourseMapper, Course> impleme
         return course.getId();
     }
 
+    //根据id查询课程信息
     @Override
     public CourseFormVo getCourseInfoById(Long id) {
         Course course = baseMapper.selectById(id);
@@ -129,6 +128,7 @@ public class CourseServiceImpl extends ServiceImpl<CourseMapper, Course> impleme
         return courseFormVo;
     }
 
+    //修改课程信息
     @Override
     public void updateCourseId(CourseFormVo courseFormVo) {
         Course course = new Course();
@@ -141,11 +141,13 @@ public class CourseServiceImpl extends ServiceImpl<CourseMapper, Course> impleme
         descriptionService.updateById(description);
     }
 
+    //根据课程id查询发布课程信息
     @Override
     public CoursePublishVo getCoursePublishVo(Long id) {
         return baseMapper.selectCoursePublishVoById(id);
     }
 
+    //课程最终发布
     @Override
     public void publishCourse(Long id) {
         Course course = baseMapper.selectById(id);
@@ -154,17 +156,75 @@ public class CourseServiceImpl extends ServiceImpl<CourseMapper, Course> impleme
         baseMapper.updateById(course);
     }
 
+    //删除课程
     @Override
     public void removeCourseId(Long id) {
-            videoService.removeVideoByCourseId(id);
-            chapterService.removeChapterByCourseId(id);
-            descriptionService.removeById(id);
-            baseMapper.deleteById(id);
+        videoService.removeVideoByCourseId(id);
+        chapterService.removeChapterByCourseId(id);
+        descriptionService.removeById(id);
+        baseMapper.deleteById(id);
     }
 
     @Override
     public List<Course> findlist() {
+        List<Course> list = baseMapper.selectList(null);
+        list.stream().forEach(item -> {
+            this.getTeacherAndSubjectName(item);
+        });
+        return list;
+    }
+
+    private Course getTeacherAndSubjectName(Course course) {
+        //讲师名称
+        Long teacherId = course.getTeacherId();
+        Teacher teacher = teacherService.getById(teacherId);
+        if (teacher != null) {
+            course.getParam().put("teacherName", teacher.getName());
+        }
+        //课程分类名称
+        Long subjectParentId = course.getSubjectParentId();
+        Subject oneSubject = subjectService.getById(subjectParentId);
+        if (oneSubject != null) {
+            course.getParam().put("subjectParentTitle", oneSubject.getTitle());
+        }
+        Long subjectId = course.getSubjectId();
+        Subject twoSubject = subjectService.getById(subjectId);
+        if (twoSubject != null) {
+            course.getParam().put("subjectTitle", twoSubject.getTitle());
+        }
+        return course;
+    }
+
+    @Override
+    public Map<String, Object> findPage(Page<Course> pageParam, CourseQueryVo courseQueryVo) {
         return null;
+    }
+
+    @Override
+    public Map<String, Object> getInfoById(Long courseId) {
+        //view_count浏览数量 +1
+        Course course = baseMapper.selectById(courseId);
+        course.setViewCount(course.getViewCount() + 1);
+        baseMapper.updateById(course);
+
+        //根据课程id查询
+        //课程详情数据
+        CourseVo courseVo = baseMapper.selectCourseVoById(courseId);
+        //课程章节小节数据
+        List<ChapterVo> chapterVoList = chapterService.getTreeList(courseId);
+        //课程描述信息
+        CourseDescription courseDescription = descriptionService.getById(courseId);
+        //课程所属讲师信息
+        Teacher teacher = teacherService.getById(course.getTeacherId());
+
+        //封装map集合，返回
+        Map<String, Object> map = new HashMap();
+        map.put("courseVo", courseVo);
+        map.put("chapterVoList", chapterVoList);
+        map.put("description", null != courseDescription ? courseDescription.getDescription() : "");
+        map.put("teacher", teacher);
+        map.put("isBuy", false);//是否购买
+        return map;
     }
 
     private Course getNameById(Course course) {
