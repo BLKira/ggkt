@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>service_activity</artifactId>
+    <artifactId>service_live</artifactId>
 
     <dependencies>
         <!-- 直播  -->

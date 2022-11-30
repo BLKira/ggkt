@@ -1,8 +1,8 @@
 package com.atguigu.ggkt.live.service.impl;
 
+import com.atguigu.ggkt.model.live.LiveCourseGoods;
 import com.atguigu.ggkt.live.mapper.LiveCourseGoodsMapper;
 import com.atguigu.ggkt.live.service.LiveCourseGoodsService;
-import com.atguigu.ggkt.model.live.LiveCourseGoods;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;

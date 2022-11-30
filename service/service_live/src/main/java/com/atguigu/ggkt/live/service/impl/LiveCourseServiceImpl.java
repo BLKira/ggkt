@@ -1,33 +1,38 @@
 package com.atguigu.ggkt.live.service.impl;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.atguigu.ggkt.client.course.CourseFeignClient;
 import com.atguigu.ggkt.client.user.UserInfoFeignClient;
 import com.atguigu.ggkt.exception.GgktException;
-import com.atguigu.ggkt.live.mapper.LiveCourseMapper;
 import com.atguigu.ggkt.live.mtcloud.CommonResult;
 import com.atguigu.ggkt.live.mtcloud.MTCloud;
 import com.atguigu.ggkt.live.service.*;
 import com.atguigu.ggkt.model.live.*;
+import com.atguigu.ggkt.live.mapper.LiveCourseMapper;
 import com.atguigu.ggkt.model.user.UserInfo;
 import com.atguigu.ggkt.model.vod.Teacher;
+import com.atguigu.ggkt.result.Result;
 import com.atguigu.ggkt.utils.DateUtil;
-import com.atguigu.ggkt.vo.live.LiveCourseConfigVo;
-import com.atguigu.ggkt.vo.live.LiveCourseFormVo;
-import com.atguigu.ggkt.vo.live.LiveCourseGoodsView;
-import com.atguigu.ggkt.vo.live.LiveCourseVo;
+import com.atguigu.ggkt.vo.live.*;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import lombok.SneakyThrows;
 import org.joda.time.DateTime;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
+import org.springframework.util.StringUtils;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * <p>

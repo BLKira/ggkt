@@ -13,6 +13,8 @@
         <module>service_client</module>
         <module>service/service_activity</module>
         <module>service/service_live</module>
+        <module>service/service_live</module>
+        <module>service/service_live</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>

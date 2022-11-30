@@ -35,3 +35,4 @@ mybatis-plus:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 
   mapper-locations: classpath:com/atguigu/ggkt/activity/mapper/xml/*.xml
+
