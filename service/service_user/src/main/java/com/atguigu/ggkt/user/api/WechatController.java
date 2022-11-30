@@ -3,7 +3,7 @@ package com.atguigu.ggkt.user.api;
 import com.alibaba.fastjson.JSON;
 import com.atguigu.ggkt.model.user.UserInfo;
 import com.atguigu.ggkt.user.service.UserInfoService;
-import com.atguigu.ggkt.vod.utils.JwtHelper;
+import com.atguigu.ggkt.utils.JwtHelper;
 import me.chanjar.weixin.common.api.WxConsts;
 import me.chanjar.weixin.common.exception.WxErrorException;
 import me.chanjar.weixin.mp.api.WxMpService;

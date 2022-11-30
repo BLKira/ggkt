@@ -29,7 +29,8 @@ public class CouponInfoApiController {
     //更新优惠券
     @ApiOperation(value = "更新优惠券使用状态")
     @GetMapping(value = "inner/updateCouponInfoUseStatus/{couponUseId}/{orderId}")
-    public Boolean updateCouponInfoUseStatus(@PathVariable("couponUseId") Long couponUseId, @PathVariable("orderId") Long orderId) {
+    public Boolean updateCouponInfoUseStatus(@PathVariable("couponUseId") Long couponUseId,
+                                             @PathVariable("orderId") Long orderId) {
         couponInfoService.updateCouponInfoUseStatus(couponUseId, orderId);
         return true;
     }

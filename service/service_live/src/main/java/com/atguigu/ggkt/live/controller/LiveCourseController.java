@@ -1,7 +1,6 @@
 package com.atguigu.ggkt.live.controller;
 
 
-import com.atguigu.ggkt.live.mtcloud.MTCloud;
 import com.atguigu.ggkt.live.service.LiveCourseAccountService;
 import com.atguigu.ggkt.live.service.LiveCourseService;
 import com.atguigu.ggkt.model.live.LiveCourse;
@@ -9,16 +8,13 @@ import com.atguigu.ggkt.model.live.LiveCourseAccount;
 import com.atguigu.ggkt.result.Result;
 import com.atguigu.ggkt.vo.live.LiveCourseConfigVo;
 import com.atguigu.ggkt.vo.live.LiveCourseFormVo;
-import com.atguigu.ggkt.vo.live.LiveCourseQueryVo;
 import com.atguigu.ggkt.vo.live.LiveCourseVo;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import javax.annotation.Resource;
 import java.util.List;
 
 /**

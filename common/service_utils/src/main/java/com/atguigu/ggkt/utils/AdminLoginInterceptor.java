@@ -1,4 +1,4 @@
-package com.atguigu.ggkt.vod.utils;
+package com.atguigu.ggkt.utils;
 
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.util.StringUtils;

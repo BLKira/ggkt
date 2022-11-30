@@ -3,7 +3,7 @@ package com.atguigu.ggkt.live.api;
 import com.alibaba.fastjson.JSONObject;
 import com.atguigu.ggkt.live.service.LiveCourseService;
 import com.atguigu.ggkt.result.Result;
-import com.atguigu.ggkt.vod.utils.AuthContextHolder;
+import com.atguigu.ggkt.utils.AuthContextHolder;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;

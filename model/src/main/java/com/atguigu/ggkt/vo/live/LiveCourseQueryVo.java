@@ -1,8 +1,9 @@
 package com.atguigu.ggkt.vo.live;
 
-import lombok.Data;
-import java.util.Date;
 import io.swagger.annotations.ApiModelProperty;
+import lombok.Data;
+
+import java.util.Date;
 
 @Data
 public class LiveCourseQueryVo {

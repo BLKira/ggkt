@@ -1,4 +1,4 @@
-package com.atguigu.ggkt.vod.utils;
+package com.atguigu.ggkt.utils;
 
 import org.apache.http.Consts;
 import org.apache.http.HttpEntity;

@@ -1,7 +1,7 @@
 package com.atguigu.ggkt.vo.vod;
 
-import lombok.Data;
 import io.swagger.annotations.ApiModelProperty;
+import lombok.Data;
 
 @Data
 public class CourseQueryVo {

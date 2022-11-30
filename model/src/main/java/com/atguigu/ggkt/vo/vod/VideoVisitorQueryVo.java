@@ -1,9 +1,10 @@
 package com.atguigu.ggkt.vo.vod;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import lombok.Data;
-import java.util.Date;
 import io.swagger.annotations.ApiModelProperty;
+import lombok.Data;
+
+import java.util.Date;
 
 @Data
 public class VideoVisitorQueryVo {

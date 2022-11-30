@@ -4,7 +4,6 @@ import com.alibaba.fastjson.JSONObject;
 import com.atguigu.ggkt.model.live.LiveCourse;
 import com.atguigu.ggkt.vo.live.LiveCourseConfigVo;
 import com.atguigu.ggkt.vo.live.LiveCourseFormVo;
-import com.atguigu.ggkt.vo.live.LiveCourseQueryVo;
 import com.atguigu.ggkt.vo.live.LiveCourseVo;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
