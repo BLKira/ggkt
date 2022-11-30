@@ -45,7 +45,7 @@ tencent:
       bucketname: ggkt-1308510430
 
   video:
-    appid: 1310644373
+    appid: 1308510430
 
 #mybatis日志
 mybatis-plus:

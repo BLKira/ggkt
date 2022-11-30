@@ -6,19 +6,13 @@
     <modules>
         <module>model</module>
         <module>service</module>
-        <module>service_vod</module>
         <module>common</module>
-        <module>service_utils</module>
         <module>service_gateway</module>
-        <module>service_order</module>
-        <module>service_order</module>
         <module>service_client</module>
-        <module>service_activity</module>
         <module>service/service_live</module>
         <module>service_client</module>
-        <module>service_client</module>
-        <module>service_client</module>
         <module>service/service_activity</module>
+        <module>service/service_live</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>

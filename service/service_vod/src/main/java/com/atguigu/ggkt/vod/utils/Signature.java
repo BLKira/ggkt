@@ -1,6 +1,5 @@
-package com.atguigu.ggkt.utils;
+package com.atguigu.ggkt.vod.utils;
 
-import java.util.Random;
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
 import sun.misc.BASE64Encoder;

@@ -1,8 +1,8 @@
 package com.atguigu.ggkt.wechat.controller;
 
 import com.atguigu.ggkt.result.Result;
-import com.atguigu.ggkt.utils.AuthContextHolder;
-import com.atguigu.ggkt.utils.Base64Util;
+import com.atguigu.ggkt.vod.utils.AuthContextHolder;
+import com.atguigu.ggkt.vod.utils.Base64Util;
 import com.atguigu.ggkt.vo.wechat.WxJsapiSignatureVo;
 import me.chanjar.weixin.common.bean.WxJsapiSignature;
 import me.chanjar.weixin.common.error.WxErrorException;
@@ -23,7 +23,7 @@ public class ShareController {
 
     @GetMapping("/getSignature")
     public Result getSignature(@RequestParam("url") String url) throws WxErrorException {
-        String currentUrl = url.replace("guiguketan", "#");
+        String currentUrl = url.replace("guiguketang", "#");
         WxJsapiSignature jsapiSignature = wxMpService.createJsapiSignature(currentUrl);
 
         WxJsapiSignatureVo wxJsapiSignatureVo = new WxJsapiSignatureVo();
@@ -31,5 +31,4 @@ public class ShareController {
         wxJsapiSignatureVo.setUserEedId(Base64Util.base64Encode(AuthContextHolder.getUserId()+""));
         return Result.ok(wxJsapiSignatureVo);
     }
-
 }

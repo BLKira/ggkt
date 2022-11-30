@@ -2,8 +2,7 @@ package com.atguigu.ggkt.order.service.impl;
 
 import com.atguigu.ggkt.exception.GgktException;
 import com.atguigu.ggkt.order.service.WXPayService;
-import com.atguigu.ggkt.utils.HttpClientUtils;
-import com.github.wxpay.sdk.WXPay;
+import com.atguigu.ggkt.vod.utils.HttpClientUtils;
 import com.github.wxpay.sdk.WXPayUtil;
 import org.springframework.stereotype.Service;
 

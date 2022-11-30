@@ -1,4 +1,4 @@
-package com.atguigu.ggkt.utils;
+package com.atguigu.ggkt.vod.utils;
 
 import io.jsonwebtoken.*;
 import org.springframework.util.StringUtils;

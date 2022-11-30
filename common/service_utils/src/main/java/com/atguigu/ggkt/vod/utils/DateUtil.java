@@ -1,4 +1,4 @@
-package com.atguigu.ggkt.utils;
+package com.atguigu.ggkt.vod.utils;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

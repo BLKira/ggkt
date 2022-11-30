@@ -165,6 +165,56 @@ public class CourseServiceImpl extends ServiceImpl<CourseMapper, Course> impleme
         baseMapper.deleteById(id);
     }
 
+    //根据课程分类查询课程列表（分页）
+//    这个和查询点播课程列表重复
+    @Override
+    public Map<String,Object> findPage(Page<Course> pageParam,
+                                       CourseQueryVo courseQueryVo) {
+        //获取条件值
+        String title = courseQueryVo.getTitle();//课程名称
+        Long subjectId = courseQueryVo.getSubjectId();//二级分类
+        Long subjectParentId = courseQueryVo.getSubjectParentId();//一级分类
+        Long teacherId = courseQueryVo.getTeacherId();//讲师
+
+        //判断条件值是否为空，封装
+        QueryWrapper<Course> wrapper = new QueryWrapper<>();
+        if(!StringUtils.isEmpty(title)) {
+            wrapper.like("title",title);
+        }
+        if(!StringUtils.isEmpty(subjectId)) {
+            wrapper.eq("subject_id",subjectId);
+        }
+        if(!StringUtils.isEmpty(subjectParentId)) {
+            wrapper.eq("subject_parent_id",subjectParentId);
+        }
+        if(!StringUtils.isEmpty(teacherId)) {
+            wrapper.eq("teacher_id",teacherId);
+        }
+        //调用方法进行条件分页查询
+        Page<Course> pages = baseMapper.selectPage(pageParam, wrapper);
+
+        //获取分页数据
+        long totalCount = pages.getTotal();//总记录数
+        long totalPage = pages.getPages();//总页数
+        long currentPage = pages.getCurrent();//当前页
+        long size = pages.getSize();//每页记录数
+        //每页数据集合
+        List<Course> records = pages.getRecords();
+
+        //封装其他数据（获取讲师名称 和 课程分类名称）
+        records.stream().forEach(item -> {
+            this.getTeacherAndSubjectName(item);
+        });
+
+        //map集合返回
+        Map<String,Object> map = new HashMap<>();
+        map.put("totalCount",totalCount);
+        map.put("totalPage",totalPage);
+        map.put("records",records);
+        return map;
+    }
+
+    //查询所有课程
     @Override
     public List<Course> findlist() {
         List<Course> list = baseMapper.selectList(null);
@@ -174,32 +224,7 @@ public class CourseServiceImpl extends ServiceImpl<CourseMapper, Course> impleme
         return list;
     }
 
-    private Course getTeacherAndSubjectName(Course course) {
-        //讲师名称
-        Long teacherId = course.getTeacherId();
-        Teacher teacher = teacherService.getById(teacherId);
-        if (teacher != null) {
-            course.getParam().put("teacherName", teacher.getName());
-        }
-        //课程分类名称
-        Long subjectParentId = course.getSubjectParentId();
-        Subject oneSubject = subjectService.getById(subjectParentId);
-        if (oneSubject != null) {
-            course.getParam().put("subjectParentTitle", oneSubject.getTitle());
-        }
-        Long subjectId = course.getSubjectId();
-        Subject twoSubject = subjectService.getById(subjectId);
-        if (twoSubject != null) {
-            course.getParam().put("subjectTitle", twoSubject.getTitle());
-        }
-        return course;
-    }
-
-    @Override
-    public Map<String, Object> findPage(Page<Course> pageParam, CourseQueryVo courseQueryVo) {
-        return null;
-    }
-
+    //根据课程id查询课程详情
     @Override
     public Map<String, Object> getInfoById(Long courseId) {
         //view_count浏览数量 +1
@@ -227,6 +252,29 @@ public class CourseServiceImpl extends ServiceImpl<CourseMapper, Course> impleme
         return map;
     }
 
+    //封装其他数据（获取讲师名称 和 课程分类名称）
+    private Course getTeacherAndSubjectName(Course course) {
+        //讲师名称
+        Long teacherId = course.getTeacherId();
+        Teacher teacher = teacherService.getById(teacherId);
+        if (teacher != null) {
+            course.getParam().put("teacherName", teacher.getName());
+        }
+        //课程分类名称
+        Long subjectParentId = course.getSubjectParentId();
+        Subject oneSubject = subjectService.getById(subjectParentId);
+        if (oneSubject != null) {
+            course.getParam().put("subjectParentTitle", oneSubject.getTitle());
+        }
+        Long subjectId = course.getSubjectId();
+        Subject twoSubject = subjectService.getById(subjectId);
+        if (twoSubject != null) {
+            course.getParam().put("subjectTitle", twoSubject.getTitle());
+        }
+        return course;
+    }
+
+    //获取这些id对应名称，进行封装，最终显示
     private Course getNameById(Course course) {
         //根据讲师id获取讲师名称
         Teacher teacher = teacherService.getById(course.getTeacherId());

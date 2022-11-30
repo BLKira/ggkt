@@ -1,4 +1,4 @@
-package com.atguigu.ggkt.utils;
+package com.atguigu.ggkt.vod.utils;
 
 //import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 
