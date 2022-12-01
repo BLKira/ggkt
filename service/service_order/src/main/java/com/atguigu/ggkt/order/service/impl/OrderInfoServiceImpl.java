@@ -1,6 +1,5 @@
 package com.atguigu.ggkt.order.service.impl;
 
-
 import com.atguigu.ggkt.client.activity.CouponInfoFeignClient;
 import com.atguigu.ggkt.client.course.CourseFeignClient;
 import com.atguigu.ggkt.client.user.UserInfoFeignClient;

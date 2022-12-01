@@ -3,6 +3,7 @@ package com.atguigu.ggkt.order.service.impl;
 import com.atguigu.ggkt.exception.GgktException;
 import com.atguigu.ggkt.order.service.WXPayService;
 import com.atguigu.ggkt.utils.HttpClientUtils;
+import com.github.wxpay.sdk.WXPay;
 import com.github.wxpay.sdk.WXPayUtil;
 import org.springframework.stereotype.Service;
 
@@ -47,7 +48,6 @@ public class WXPayServiceImpl implements WXPayService {
             //设置请求参数
             String paramXml  = WXPayUtil.generateSignedXml(paramMap, "MXb72b9RfshXZD4FRGV5KLqmv5bx9LT9");
             client.setXmlParam(paramXml);
-//            支持https请求
             client.setHttps(true);
             //请求
             client.post();
@@ -113,6 +113,8 @@ public class WXPayServiceImpl implements WXPayService {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+
         return null;
     }
 }

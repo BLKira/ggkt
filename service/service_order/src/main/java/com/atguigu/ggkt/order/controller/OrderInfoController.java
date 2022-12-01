@@ -6,11 +6,11 @@ import com.atguigu.ggkt.order.service.OrderInfoService;
 import com.atguigu.ggkt.result.Result;
 import com.atguigu.ggkt.vo.order.OrderInfoQueryVo;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Map;
@@ -31,7 +31,6 @@ public class OrderInfoController {
     private OrderInfoService orderInfoService;
 
     //订单列表
-    @ApiOperation("订单列表")
     @GetMapping("{page}/{limit}")
     public Result listOrder(@PathVariable Long page,
                             @PathVariable Long limit,
