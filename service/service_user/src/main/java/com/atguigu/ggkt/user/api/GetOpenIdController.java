@@ -27,7 +27,7 @@ public class GetOpenIdController {
         String redirectURL = wxMpService
                 .oauth2buildAuthorizationUrl(userInfoUrl,
                         WxConsts.OAUTH2_SCOPE_USER_INFO,
-                        URLEncoder.encode(returnUrl.replace("guiguketan", "#")));
+                        URLEncoder.encode(returnUrl.replace("guiguketang", "#")));
         return "redirect:" + redirectURL;
     }
 

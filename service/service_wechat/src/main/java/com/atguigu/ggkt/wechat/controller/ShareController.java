@@ -31,4 +31,5 @@ public class ShareController {
         wxJsapiSignatureVo.setUserEedId(Base64Util.base64Encode(AuthContextHolder.getUserId()+""));
         return Result.ok(wxJsapiSignatureVo);
     }
+
 }

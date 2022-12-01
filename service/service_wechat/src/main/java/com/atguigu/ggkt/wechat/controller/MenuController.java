@@ -1,5 +1,6 @@
 package com.atguigu.ggkt.wechat.controller;
 
+
 import com.alibaba.fastjson.JSONObject;
 import com.atguigu.ggkt.exception.GgktException;
 import com.atguigu.ggkt.model.wechat.Menu;

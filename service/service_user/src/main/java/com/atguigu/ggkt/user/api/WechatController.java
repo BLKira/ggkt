@@ -38,7 +38,7 @@ public class WechatController {
                             HttpServletRequest request) {
         String url = wxMpService.oauth2buildAuthorizationUrl(userInfoUrl,
                 WxConsts.OAUTH2_SCOPE_USER_INFO,
-                URLEncoder.encode(returnUrl.replace("guiguketan", "#")));
+                URLEncoder.encode(returnUrl.replace("guiguketang", "#")));
         return "redirect:"+url;
     }
 

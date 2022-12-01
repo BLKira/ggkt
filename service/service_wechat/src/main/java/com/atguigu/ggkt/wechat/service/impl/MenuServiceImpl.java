@@ -46,8 +46,7 @@ public class MenuServiceImpl extends ServiceImpl<MenuMapper, Menu> implements Me
 
     //同步公众号菜单
     @Override
-    public void
-    syncMenu() {
+    public void syncMenu() {
         //获取所有菜单数据
         List<MenuVo> menuVoList = this.findMenuInfo();
         //封装button里面结构，数组格式

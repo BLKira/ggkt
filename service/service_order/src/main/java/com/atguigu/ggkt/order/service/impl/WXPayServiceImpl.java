@@ -20,7 +20,7 @@ public class WXPayServiceImpl implements WXPayService {
         //封装微信支付需要参数，使用map集合
         Map<String,String> paramMap = new HashMap<>();
         //正式服务号id  固定值
-        paramMap.put("appid", "wxf913bfa3a2c7eeeb");
+        paramMap.put("appid", "wxe3f40d8388531103");
         //服务号商户号  固定值
         paramMap.put("mch_id", "1481962542");
         paramMap.put("nonce_str", WXPayUtil.generateNonceStr());
@@ -66,7 +66,7 @@ public class WXPayServiceImpl implements WXPayService {
             Map<String, String> parameterMap = new HashMap<>();
             String prepayId = String.valueOf(resultMap.get("prepay_id"));
             String packages = "prepay_id=" + prepayId;
-            parameterMap.put("appId", "wxf913bfa3a2c7eeeb");
+            parameterMap.put("appId", "wxe3f40d8388531103");
             parameterMap.put("nonceStr", resultMap.get("nonce_str"));
             parameterMap.put("package", packages);
             parameterMap.put("signType", "MD5");
@@ -74,7 +74,7 @@ public class WXPayServiceImpl implements WXPayService {
             String sign = WXPayUtil.generateSignature(parameterMap, "MXb72b9RfshXZD4FRGV5KLqmv5bx9LT9");
             //返回结果
             Map<String, Object> result = new HashMap();
-            result.put("appId", "wxf913bfa3a2c7eeeb");
+            result.put("appId", "wxe3f40d8388531103");
             result.put("timeStamp", parameterMap.get("timeStamp"));
             result.put("nonceStr", parameterMap.get("nonceStr"));
             result.put("signType", "MD5");
@@ -93,7 +93,7 @@ public class WXPayServiceImpl implements WXPayService {
     public Map<String, String> queryPayStatus(String orderNo) {
         //封装微信接口需要参数，使用map
         Map paramMap = new HashMap<>();
-        paramMap.put("appid","wxf913bfa3a2c7eeeb");
+        paramMap.put("appid","wxe3f40d8388531103");
         paramMap.put("mch_id","1481962542");
         paramMap.put("out_trade_no", orderNo);
         paramMap.put("nonce_str", WXPayUtil.generateNonceStr());
