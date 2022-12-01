@@ -23,7 +23,7 @@ public class GetOpenIdController {
     @GetMapping("/authorize")
     public String authorize(@RequestParam("returnUrl") String returnUrl, HttpServletRequest request) {
         String userInfoUrl =
-                "http://6b4a45e.r2.cpolar.top/api/user/openid/userInfo";
+                "http://6b0c52a9.r3.cpolar.top/api/user/openid/userInfo";
         String redirectURL = wxMpService
                 .oauth2buildAuthorizationUrl(userInfoUrl,
                         WxConsts.OAUTH2_SCOPE_USER_INFO,

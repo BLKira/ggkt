@@ -4,8 +4,8 @@
 
     <select id="findCount" resultType="com.atguigu.ggkt.vo.vod.VideoVisitorCountVo">
         SELECT
-        DATE(join_time) AS joinTime,
-        COUNT(*) AS userCount
+            DATE(join_time) AS joinTime,
+            COUNT(*) AS userCount
         FROM video_visitor
         <where>
             <if test="startDate != null and startDate != ''">

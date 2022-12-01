@@ -248,11 +248,11 @@ public class LiveCourseServiceImpl extends ServiceImpl<LiveCourseMapper, LiveCou
         LiveCourseConfigVo liveCourseConfigVo = new LiveCourseConfigVo();
         if(liveCourseConfig != null) {
             //查询直播课程商品列表
-            List<LiveCourseGoods> liveCourseGoodslist = liveCourseGoodsService.getGoodsListCourseId(id);
+            List<LiveCourseGoods> liveCourseGoodsList = liveCourseGoodsService.getGoodsListCourseId(id);
             //封装到liveCourseConfigVo里面
             BeanUtils.copyProperties(liveCourseConfig,liveCourseConfigVo);
             //封装商品列表
-            liveCourseConfigVo.setLiveCourseGoodsList(liveCourseGoodslist);
+            liveCourseConfigVo.setLiveCourseGoodsList(liveCourseGoodsList);
         }
         return liveCourseConfigVo;
     }

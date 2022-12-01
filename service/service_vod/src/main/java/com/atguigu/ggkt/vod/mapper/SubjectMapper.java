@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
  * </p>
  *
  * @author atguigu
- * @since 2022-11-11
+ * @since 2022-04-21
  */
 @Repository
 public interface SubjectMapper extends BaseMapper<Subject> {

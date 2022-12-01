@@ -24,6 +24,7 @@ import java.util.Map;
 
 @Service
 public class VodServiceImpl implements VodService {
+
     @Autowired
     private VideoService videoService;
 
@@ -34,16 +35,16 @@ public class VodServiceImpl implements VodService {
     public String updateVideo() {
         //指定当前腾讯云账号id和key
         VodUploadClient client = new VodUploadClient(ConstantPropertiesUtil.ACCESS_KEY_ID,
-                ConstantPropertiesUtil.ACCESS_KEY_SECRET);
+                                                     ConstantPropertiesUtil.ACCESS_KEY_SECRET);
         //上传请求对象
         VodUploadRequest request = new VodUploadRequest();
         //设置视频文件在本地路径
-        request.setMediaFilePath("E:\\ggkt\\1mb.mp4");
+        request.setMediaFilePath("D:\\001.mp4");
         //任务流
         request.setProcedure("LongVideoPreset");
         try {
             //调用方法上传视频，指定地域
-            VodUploadResponse response = client.upload("ap-beijing", request);
+            VodUploadResponse response = client.upload("ap-guangzhou", request);
             //获取上传之后视频id
             String fileId = response.getFileId();
             return fileId;
@@ -59,7 +60,7 @@ public class VodServiceImpl implements VodService {
         try{
             // 实例化一个认证对象，入参需要传入腾讯云账户secretId，secretKey
             Credential cred = new Credential(ConstantPropertiesUtil.ACCESS_KEY_ID,
-                    ConstantPropertiesUtil.ACCESS_KEY_SECRET);
+                                             ConstantPropertiesUtil.ACCESS_KEY_SECRET);
             // 实例化一个http选项，可选的，没有特殊需求可以跳过
             HttpProfile httpProfile = new HttpProfile();
             httpProfile.setEndpoint("vod.tencentcloudapi.com");

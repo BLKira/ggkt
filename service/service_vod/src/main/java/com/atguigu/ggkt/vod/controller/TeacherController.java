@@ -1,6 +1,7 @@
 package com.atguigu.ggkt.vod.controller;
 
 
+import com.atguigu.ggkt.exception.GgktException;
 import com.atguigu.ggkt.model.vod.Teacher;
 import com.atguigu.ggkt.result.Result;
 import com.atguigu.ggkt.vo.vod.TeacherQueryVo;
@@ -23,31 +24,49 @@ import java.util.List;
  * </p>
  *
  * @author atguigu
- * @since 2022-11-03
+ * @since 2022-04-13
  */
 @Api(tags = "讲师管理接口")
 @RestController
-@RequestMapping("/admin/vod/teacher")
+@RequestMapping(value="/admin/vod/teacher")
+//@CrossOrigin //跨域
 public class TeacherController {
 
     @Autowired
     private TeacherService teacherService;
 
-    //查询所有
+    // http://localhost:8301/admin/vod/teacher/findAll
+    //1 查询所有讲师
+//    @ApiOperation("查询所有讲师")
+//    @GetMapping("findAll")
+//    public List<Teacher> findAllTeacher() {
+//        //调用service方法
+//        List<Teacher> list = teacherService.list();
+//        return list;
+//    }
     @ApiOperation("查询所有讲师")
     @GetMapping("findAll")
     public Result findAllTeacher() {
+        //模拟异常
+//        try {
+//            int i = 10/0;
+//        }catch (Exception e) {
+//            //抛出异常
+//            throw new GgktException(201,"执行自定义异常处理GgktException");
+//        }
+        //调用service方法
         List<Teacher> list = teacherService.list();
         return Result.ok(list).message("查询数据成功");
     }
 
-    //逻辑删除
+    // remove/1
+    //2 逻辑删除讲师
     @ApiOperation("逻辑删除讲师")
     @DeleteMapping("remove/{id}")
     public Result removeTeacher(@ApiParam(name = "id", value = "ID", required = true)
-                                @PathVariable Long id) {
+                                     @PathVariable Long id) {
         boolean isSuccess = teacherService.removeById(id);
-        if (isSuccess) {
+        if(isSuccess) {
             return Result.ok(null);
         } else {
             return Result.fail(null);
@@ -61,11 +80,11 @@ public class TeacherController {
                            @PathVariable long limit,
                            @RequestBody(required = false) TeacherQueryVo teacherQueryVo) {
         //创建page对象
-        Page<Teacher> pageParam = new Page<>(current, limit);
+        Page<Teacher> pageParam = new Page<>(current,limit);
         //判断teacherQueryVo对象是否为空
-        if (teacherQueryVo == null) {//查询全部
+        if(teacherQueryVo == null) {//查询全部
             IPage<Teacher> pageModel =
-                    teacherService.page(pageParam, null);
+                    teacherService.page(pageParam,null);
             return Result.ok(pageModel);
         } else {
             //获取条件值，
@@ -75,17 +94,17 @@ public class TeacherController {
             String joinDateEnd = teacherQueryVo.getJoinDateEnd();
             //进行非空判断，条件封装
             QueryWrapper<Teacher> wrapper = new QueryWrapper<>();
-            if (!StringUtils.isEmpty(name)) {
-                wrapper.like("name", name);
+            if(!StringUtils.isEmpty(name)) {
+                wrapper.like("name",name);
             }
-            if (!StringUtils.isEmpty(level)) {
-                wrapper.eq("level", level);
+            if(!StringUtils.isEmpty(level)) {
+                wrapper.eq("level",level);
             }
-            if (!StringUtils.isEmpty(joinDateBegin)) {
-                wrapper.ge("join_date", joinDateBegin);
+            if(!StringUtils.isEmpty(joinDateBegin)) {
+                wrapper.ge("join_date",joinDateBegin);
             }
-            if (!StringUtils.isEmpty(joinDateEnd)) {
-                wrapper.le("join_date", joinDateEnd);
+            if(!StringUtils.isEmpty(joinDateEnd)) {
+                wrapper.le("join_date",joinDateEnd);
             }
             //调用方法分页查询
             IPage<Teacher> pageModel = teacherService.page(pageParam, wrapper);
@@ -94,19 +113,19 @@ public class TeacherController {
         }
     }
 
-    //添加讲师
+    //4 添加讲师
     @ApiOperation("添加讲师")
     @PostMapping("saveTeacher")
     public Result saveTeacher(@RequestBody Teacher teacher) {
         boolean isSuccess = teacherService.save(teacher);
-        if (isSuccess) {
+        if(isSuccess) {
             return Result.ok(null);
         } else {
             return Result.fail(null);
         }
     }
 
-    //修改-根据id查询
+    //5 修改-根据id查询
     @ApiOperation("根据id查询")
     @GetMapping("getTeacher/{id}")
     public Result getTeacher(@PathVariable Long id) {
@@ -114,30 +133,38 @@ public class TeacherController {
         return Result.ok(teacher);
     }
 
-
-    //修改-最终实现
+    //6 修改-最终实现
+    // {...}
     @ApiOperation("修改最终实现")
-    @GetMapping("updateTeacher/{id}")
-    public Result updateTeacher(@PathVariable Teacher teacher) {
+    @PostMapping("updateTeacher")
+    public Result updateTeacher(@RequestBody Teacher teacher) {
         boolean isSuccess = teacherService.updateById(teacher);
-        if (isSuccess) {
+        if(isSuccess) {
             return Result.ok(null);
         } else {
             return Result.fail(null);
         }
     }
 
-    //批量删除讲师
+    //7 批量删除讲师
+    // json数组 [1,2,3]
     @ApiOperation("批量删除讲师")
-    @GetMapping("removeBatch")
+    @DeleteMapping("removeBatch")
     public Result removeBatch(@RequestBody List<Long> idList) {
         boolean isSuccess = teacherService.removeByIds(idList);
-        if (isSuccess) {
+        if(isSuccess) {
             return Result.ok(null);
         } else {
             return Result.fail(null);
         }
     }
-}
 
+    //根据id查询 远程调用
+    @ApiOperation("根据id查询")
+    @GetMapping("inner/getTeacher/{id}")
+    public Teacher getTeacherInfo(@PathVariable Long id) {
+        Teacher teacher = teacherService.getById(id);
+        return teacher;
+    }
+}
 

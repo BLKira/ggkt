@@ -20,6 +20,7 @@ public interface CourseFeignClient {
     @GetMapping("/api/vod/course/inner/getById/{courseId}")
     Course getById(@PathVariable Long courseId);
 
+    @ApiOperation("根据ID查询教师信息")
     @GetMapping("/admin/vod/teacher/inner/getTeacher/{id}")
     public Teacher getTeacherInfo(@PathVariable Long id);
 

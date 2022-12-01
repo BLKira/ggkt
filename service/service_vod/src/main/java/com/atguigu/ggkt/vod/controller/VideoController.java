@@ -4,9 +4,9 @@ package com.atguigu.ggkt.vod.controller;
 import com.atguigu.ggkt.model.vod.Video;
 import com.atguigu.ggkt.result.Result;
 import com.atguigu.ggkt.vod.service.VideoService;
-import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -15,12 +15,13 @@ import org.springframework.web.bind.annotation.*;
  * </p>
  *
  * @author atguigu
- * @since 2022-11-13
+ * @since 2022-04-22
  */
-@Api(tags = "视频点播")
 @RestController
-@RequestMapping("/admin/vod/video")
+@RequestMapping(value="/admin/vod/video")
+//@CrossOrigin
 public class VideoController {
+
     @Autowired
     private VideoService videoService;
 

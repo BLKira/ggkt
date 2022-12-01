@@ -18,11 +18,12 @@ import java.util.List;
  * </p>
  *
  * @author atguigu
- * @since 2022-11-13
+ * @since 2022-04-22
  */
 @Service
 public class VideoServiceImpl extends ServiceImpl<VideoMapper, Video> implements VideoService {
 
+    //注入
     @Autowired
     private VodService vodService;
 
@@ -34,7 +35,7 @@ public class VideoServiceImpl extends ServiceImpl<VideoMapper, Video> implements
         //获取video里面视频id
         String videoSourceId = video.getVideoSourceId();
         //判断视频id是否为空
-        if (!StringUtils.isEmpty(videoSourceId)) {
+        if(!StringUtils.isEmpty(videoSourceId)) {
             //视频id不为空，调用方法根据视频id删除腾讯云视频
             vodService.removeVideo(videoSourceId);
         }
@@ -47,14 +48,14 @@ public class VideoServiceImpl extends ServiceImpl<VideoMapper, Video> implements
     public void removeVideoByCourseId(Long id) {
         //根据课程id查询课程所有小节
         QueryWrapper<Video> wrapper = new QueryWrapper<>();
-        wrapper.eq("course_id", id);
+        wrapper.eq("course_id",id);
         List<Video> videoList = baseMapper.selectList(wrapper);
         //遍历所有小节集合得到每个小节，获取每个小节视频id
-        for (Video video : videoList) {
+        for (Video video:videoList) {
             //获取每个小节视频id
             String videoSourceId = video.getVideoSourceId();
             //判断视频id是否为空，不为空，删除腾讯云视频
-            if (!StringUtils.isEmpty(videoSourceId)) {
+            if(!StringUtils.isEmpty(videoSourceId)) {
                 //删除腾讯云视频
                 vodService.removeVideo(videoSourceId);
             }

@@ -30,12 +30,12 @@ public class MTCloud {
     /**
      * 合作方ID： 合作方在欢拓平台的唯一ID
      */
-    public String openID = "46537";
+    public String openID = "53319";
 
     /**
      * 合作方秘钥： 合作方ID对应的参数加密秘钥
      */
-    public String openToken = "4ada3d61ae5a5f32ce4901df01f55a6b";
+    public String openToken = "be67763a0fa5de3af8f4fa228932457b";
 
     /**
      * 欢拓API接口地址

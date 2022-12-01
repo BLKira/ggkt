@@ -9,7 +9,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * </p>
  *
  * @author atguigu
- * @since 2022-11-13
+ * @since 2022-04-22
  */
 public interface CourseDescriptionService extends IService<CourseDescription> {
 

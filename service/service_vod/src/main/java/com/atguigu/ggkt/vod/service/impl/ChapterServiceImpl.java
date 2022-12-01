@@ -23,7 +23,7 @@ import java.util.List;
  * </p>
  *
  * @author atguigu
- * @since 2022-11-13
+ * @since 2022-04-22
  */
 @Service
 public class ChapterServiceImpl extends ServiceImpl<ChapterMapper, Chapter> implements ChapterService {
@@ -31,37 +31,55 @@ public class ChapterServiceImpl extends ServiceImpl<ChapterMapper, Chapter> impl
     @Autowired
     private VideoService videoService;
 
+    //1 大纲列表（章节和小节列表）
     @Override
     public List<ChapterVo> getTreeList(Long courseId) {
-        List<ChapterVo> list = new ArrayList<>();
+        //定义最终数据list集合
+        List<ChapterVo> finalChapterList = new ArrayList<>();
 
+        //根据courseId获取课程里面所有章节
         QueryWrapper<Chapter> wrapperChapter = new QueryWrapper<>();
-        wrapperChapter.eq("course_id", courseId);
+        wrapperChapter.eq("course_id",courseId);
         List<Chapter> chapterList = baseMapper.selectList(wrapperChapter);
 
+        //根据courseId获取课程里面所有小节
         LambdaQueryWrapper<Video> wrapperVideo = new LambdaQueryWrapper<>();
-        wrapperVideo.eq(Video::getCourseId, courseId);
+        wrapperVideo.eq(Video::getCourseId,courseId);
         List<Video> videoList = videoService.list(wrapperVideo);
 
+        //封装章节
+        //遍历所有章节
         for (int i = 0; i < chapterList.size(); i++) {
+            //得到课程每个章节
             Chapter chapter = chapterList.get(i);
+            // chapter -- ChapterVo
             ChapterVo chapterVo = new ChapterVo();
-            BeanUtils.copyProperties(chapter, chapterVo);
-            list.add(chapterVo);
+            BeanUtils.copyProperties(chapter,chapterVo);
+            //得到每个章节对象放到finalChapterList集合
+            finalChapterList.add(chapterVo);
 
+            //封装章节里面小节
+            //创建list集合用户封装章节所有小节
             List<VideoVo> videoVoList = new ArrayList<>();
-            for (Video video : videoList) {
-                if (chapter.getId().equals(video.getId())) {
+            //遍历小节list
+            for (Video video:videoList) {
+                //判断小节是哪个章节下面
+                //章节id  和 小节chapter_id
+                if(chapter.getId().equals(video.getChapterId())) {
+                    // video  -- VideoVo
                     VideoVo videoVo = new VideoVo();
-                    BeanUtils.copyProperties(video, videoVo);
+                    BeanUtils.copyProperties(video,videoVo);
+                    //放到videoVoList
                     videoVoList.add(videoVo);
                 }
             }
+            //把章节里面所有小节集合放到每个章节里面
             chapterVo.setChildren(videoVoList);
         }
-        return list;
+        return finalChapterList;
     }
 
+    //根据课程id删除章节
     @Override
     public void removeChapterByCourseId(Long id) {
         QueryWrapper<Chapter> wrapper = new QueryWrapper<>();

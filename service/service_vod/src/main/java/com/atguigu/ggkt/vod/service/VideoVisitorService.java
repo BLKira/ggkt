@@ -11,9 +11,10 @@ import java.util.Map;
  * </p>
  *
  * @author atguigu
- * @since 2022-11-16
+ * @since 2022-04-25
  */
 public interface VideoVisitorService extends IService<VideoVisitor> {
 
+    //课程统计的接口
     Map<String, Object> findCount(Long courseId, String startDate, String endDate);
 }

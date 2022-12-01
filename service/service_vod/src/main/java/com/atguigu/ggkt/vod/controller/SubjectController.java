@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
@@ -18,17 +19,18 @@ import java.util.List;
  * </p>
  *
  * @author atguigu
- * @since 2022-11-11
+ * @since 2022-04-21
  */
 @RestController
-@RequestMapping("/admin/vod/subject")
+@RequestMapping(value="/admin/vod/subject")
+//@CrossOrigin
 public class SubjectController {
 
     @Autowired
     private SubjectService subjectService;
 
     //课程分类列表
-    //懒加载
+    //懒加载，每次查询一层数据
     @ApiOperation("课程分类列表")
     @GetMapping("getChildSubject/{id}")
     public Result getChildSubject(@PathVariable Long id) {

@@ -36,7 +36,6 @@ mybatis-plus:
 
   mapper-locations: classpath:com/atguigu/ggkt/live/mapper/xml/*.xml
 
-
 mtcloud:
-  openId: 46537
-  openToken:  4ada3d61ae5a5f32ce4901df01f55a6b
+  openId: 53319
+  openToken:  be67763a0fa5de3af8f4fa228932457b

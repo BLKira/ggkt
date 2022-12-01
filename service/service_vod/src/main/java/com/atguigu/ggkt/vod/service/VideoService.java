@@ -1,5 +1,6 @@
 package com.atguigu.ggkt.vod.service;
 
+
 import com.atguigu.ggkt.model.vod.Video;
 import com.baomidou.mybatisplus.extension.service.IService;
 
@@ -9,9 +10,10 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * </p>
  *
  * @author atguigu
- * @since 2022-11-13
+ * @since 2022-04-22
  */
 public interface VideoService extends IService<Video> {
+
     //根据课程id删除小节
     void removeVideoByCourseId(Long id);
 

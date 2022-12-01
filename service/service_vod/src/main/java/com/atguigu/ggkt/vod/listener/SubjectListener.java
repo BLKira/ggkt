@@ -12,13 +12,17 @@ import org.springframework.stereotype.Component;
 @Component
 public class SubjectListener extends AnalysisEventListener<SubjectEeVo> {
 
+    //注入mapper
     @Autowired
     private SubjectMapper subjectMapper;
 
+    //一行一行，从第二行
     @Override
     public void invoke(SubjectEeVo subjectEeVo, AnalysisContext analysisContext) {
         Subject subject = new Subject();
-        BeanUtils.copyProperties(subjectEeVo, subject);
+        //  SubjectEeVo -- Subject
+        BeanUtils.copyProperties(subjectEeVo,subject);
+        //添加
         subjectMapper.insert(subject);
     }
 

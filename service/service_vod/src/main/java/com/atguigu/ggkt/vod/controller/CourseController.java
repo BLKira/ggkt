@@ -21,25 +21,17 @@ import java.util.Map;
  * </p>
  *
  * @author atguigu
- * @since 2022-11-13
+ * @since 2022-04-22
  */
 @RestController
-@RequestMapping("/admin/vod/course")
+@RequestMapping(value="/admin/vod/course")
+//@CrossOrigin
 public class CourseController {
 
     @Autowired
     private CourseService courseService;
 
-    @ApiOperation("点播课程列表")
-    @GetMapping("{page}/{limit}")
-    public Result courseList(@PathVariable Long page,
-                             @PathVariable Long limit,
-                             CourseQueryVo courseQueryVo) {
-        Page<Course> pageParam = new Page<>(page, limit);
-        Map<String, Object> map = courseService.findPageCourse(pageParam, courseQueryVo);
-        return Result.ok(null);
-    }
-
+    //添加课程基本信息
     @ApiOperation("添加课程基本信息")
     @PostMapping("save")
     public Result save(@RequestBody CourseFormVo courseFormVo) {
@@ -47,20 +39,33 @@ public class CourseController {
         return Result.ok(courseId);
     }
 
-    @ApiOperation("根据id获取课程信息")
+    //点播课程列表
+    @ApiOperation("点播课程列表")
+    @GetMapping("{page}/{limit}")
+    public Result courseList(@PathVariable Long page,
+                             @PathVariable Long limit,
+                             CourseQueryVo courseQueryVo) {
+        Page<Course> pageParam = new Page<>(page,limit);
+        Map<String,Object> map = courseService.findPageCourse(pageParam,courseQueryVo);
+        return Result.ok(map);
+    }
+
+    //根据id获取课程信息
     @GetMapping("get/{id}")
     public Result get(@PathVariable Long id) {
         CourseFormVo courseFormVo = courseService.getCourseInfoById(id);
         return Result.ok(courseFormVo);
     }
 
-    @ApiOperation("修改课程信息")
+    //修改课程信息
     @PostMapping("update")
     public Result update(@RequestBody CourseFormVo courseFormVo) {
         courseService.updateCourseId(courseFormVo);
+        //课程id
         return Result.ok(courseFormVo.getId());
     }
 
+    //根据课程id查询发布课程信息
     @ApiOperation("id查询发布课程信息")
     @GetMapping("getCoursePublishVo/{id}")
     public Result getCoursePublishVo(@PathVariable Long id) {
@@ -68,7 +73,7 @@ public class CourseController {
         return Result.ok(coursePublishVo);
     }
 
-
+    //课程最终发布
     @ApiOperation("课程最终发布")
     @PutMapping("publishCourse/{id}")
     public Result publishCourse(@PathVariable Long id) {
@@ -76,19 +81,18 @@ public class CourseController {
         return Result.ok(null);
     }
 
-    @ApiOperation("删除课程")
+    //删除课程
     @DeleteMapping("remove/{id}")
     public Result remove(@PathVariable Long id) {
         courseService.removeCourseId(id);
         return Result.ok(null);
     }
 
-    @ApiOperation("查询所有课程")
+    //查询所有课程
     @GetMapping("findAll")
     public Result findAll() {
         List<Course> list = courseService.findlist();
         return Result.ok(list);
     }
-
 }
 

@@ -11,11 +11,13 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  * </p>
  *
  * @author atguigu
- * @since 2022-11-13
+ * @since 2022-04-22
  */
 public interface CourseMapper extends BaseMapper<Course> {
 
+    //根据课程id查询发布课程信息
     CoursePublishVo selectCoursePublishVoById(Long id);
 
+    //根据课程id查询课程详情
     CourseVo selectCourseVoById(Long courseId);
 }

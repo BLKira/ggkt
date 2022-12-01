@@ -1,9 +1,9 @@
 package com.atguigu.ggkt.vod.utils;
 
-import sun.misc.BASE64Encoder;
-
+import java.util.Random;
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
+import sun.misc.BASE64Encoder;
 
 public class Signature {
     private String secretId;
@@ -13,14 +13,12 @@ public class Signature {
     private int signValidDuration;
     private static final String HMAC_ALGORITHM = "HmacSHA1"; //签名算法
     private static final String CONTENT_CHARSET = "UTF-8";
-
     public static byte[] byteMerger(byte[] byte1, byte[] byte2) {
         byte[] byte3 = new byte[byte1.length + byte2.length];
         System.arraycopy(byte1, 0, byte3, 0, byte1.length);
         System.arraycopy(byte2, 0, byte3, byte1.length, byte2.length);
         return byte3;
     }
-
     // 获取签名
     public String getUploadSignature() throws Exception {
         String strSign = "";
@@ -46,28 +44,22 @@ public class Signature {
         }
         return strSign;
     }
-
     private String base64Encode(byte[] buffer) {
         BASE64Encoder encoder = new BASE64Encoder();
         return encoder.encode(buffer);
     }
-
     public void setSecretId(String secretId) {
         this.secretId = secretId;
     }
-
     public void setSecretKey(String secretKey) {
         this.secretKey = secretKey;
     }
-
     public void setCurrentTime(long currentTime) {
         this.currentTime = currentTime;
     }
-
     public void setRandom(int random) {
         this.random = random;
     }
-
     public void setSignValidDuration(int signValidDuration) {
         this.signValidDuration = signValidDuration;
     }

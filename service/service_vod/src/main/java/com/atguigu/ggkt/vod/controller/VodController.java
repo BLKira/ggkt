@@ -14,6 +14,7 @@ import java.util.Random;
 @Api(tags = "腾讯云点播")
 @RestController
 @RequestMapping("/admin/vod")
+//@CrossOrigin
 public class VodController {
 
     @Autowired
@@ -27,7 +28,7 @@ public class VodController {
         sign.setSecretId(ConstantPropertiesUtil.ACCESS_KEY_ID);
         sign.setSecretKey(ConstantPropertiesUtil.ACCESS_KEY_SECRET);
         sign.setCurrentTime(System.currentTimeMillis() / 1000);
-        sign.setRandom(new Random().nextInt(java.lang.Integer.MAX_VALUE));
+        sign.setRandom(new Random().nextInt(Integer.MAX_VALUE));
         sign.setSignValidDuration(3600 * 24 * 2); // 签名有效期：2天
         try {
             String signature = sign.getUploadSignature();
@@ -53,5 +54,4 @@ public class VodController {
         vodService.removeVideo(fileId);
         return Result.ok(null);
     }
-
 }
