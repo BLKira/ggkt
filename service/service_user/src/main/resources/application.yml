@@ -43,5 +43,5 @@ mybatis-plus:
 wechat:
   mpAppId: wxe3f40d8388531103
   mpAppSecret: 5091e186081bbc1b296ac29373d065f4
-  userInfoUrl: http://6b0c52a9.r3.cpolar.top/api/user/wechat/userInfo
+  userInfoUrl: http://72412610.cpolar.top/api/user/wechat/userInfo
 
